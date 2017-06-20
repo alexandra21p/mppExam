@@ -1,0 +1,27 @@
+<!--<div *ngIf="selectedStudent" class="selectedStudent">-->
+    <!--<h4>-->
+        <!--{{selectedStudent.name | uppercase}} was selected-->
+    <!--</h4>-->
+    <!--<button (click)="gotoDetail()">View Details</button>-->
+<!--</div>-->
+
+<h2>Pizzas</h2>
+<ol class="pizzas">
+    <li *ngFor="let pizza of pizzas "
+        [class.selected]="pizza === selectedPizza">
+        <!--(click)="onSelect(pizza)">-->
+
+        name: <label>{{pizza.name}}</label>
+        <input [(ngModel)]="pizza.price" placeholder="price">
+        <button class="update" (click)="update(pizza)">Update</button>
+    </li>
+  <hr>
+</ol>
+
+<label>Price</label>
+<br>
+<div>
+<input [(ngModel)]="price" id ="price"> {{price}}
+<br>
+<button class ="btn" (click)="updateAll()">Update All</button>
+</div>

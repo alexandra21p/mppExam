@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <!-- ======= -->
+        <!-- CONSOLE -->
+        <!-- ======= -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <!-- ========= -->
+        <!-- ROOT File -->
+        <!-- ========= -->
+        <File name="MyFile" fileName="logFile.log" append="false">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+
+        <!-- Spring framework -->
+        <!--<Logger name="org.hibernate.stat" level="INFO" />-->
+        <Logger name="org.springframework.data" level="WARN"/>
+        <Logger name="org.springframework.web" level="WARN"/>
+        <Logger name="org.springframework.http.web.converter.json" level="WARN"/>
+        <Logger name="com.fasterxml.jackson.databind" level="WARN"/>
+        <Logger name="web.controller" level="TRACE"/>
+        <Logger name="core.core.service" level="TRACE"/>
+
+        <Root level="WARN">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="MyFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
