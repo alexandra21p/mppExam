@@ -5,7 +5,10 @@ import core.service.PizzaService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import web.converter.PizzaConverter;
 import web.dto.PizzaDto;
 import web.dto.PizzasDto;
@@ -40,10 +43,10 @@ public class PizzaController {
         return new PizzasDto(pizzaConverter.convertModelsToDtos(pizzas));
     }
 
-    @RequestMapping(value = "/pizzashop2010/pizzas", params = "pizzaDtoMap", method = RequestMethod.PUT)
+    @RequestMapping(value = "/pizzashop2010/pizzas",  method = RequestMethod.POST)
         public Map<String, PizzaDto> updatePizza(
                 @RequestBody final Map<String, PizzaDto> pizzaDtoMap) {
-            log.trace("updatePizza: pizzaDtoMap={}", pizzaDtoMap);
+            log.trace("updatePizza: pizzaDtoMap = {}", pizzaDtoMap);
 
             PizzaDto pizzaDto = pizzaDtoMap.get("pizza");
             Pizza pizza = pizzaService.updatePizza(pizzaDto.getId(), pizzaDto.getPrice());
@@ -56,7 +59,7 @@ public class PizzaController {
             return result;
     }
 
-    @RequestMapping(value = "/pizzashop2010/pizzas", params = "price", method = RequestMethod.PUT)
+    @RequestMapping(value = "/pizzashop2010/pizzas",  method = RequestMethod.PUT)
     public PizzasDto updateAllPizzas(
             @RequestBody final float price) {
         log.trace("updatePizzas: price = {}", price);
@@ -71,8 +74,6 @@ public class PizzaController {
 
         log.trace("updatePizzas: done");
         return new PizzasDto(pizzaConverter.convertModelsToDtos(pizzas));
-
-
     }
     
 }

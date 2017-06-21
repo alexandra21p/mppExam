@@ -49,11 +49,12 @@ export class PizzaService {
     }
 
     update(pizza: Pizza): Observable<Pizza> {
-      console.log("inside service client: ", pizza);
+      console.log("inside client service: ", pizza);
+      console.log(this.headers);
       //const url = `${this.pizzaUrl}/${pizza.id}`;
       //noinspection TypeScriptUnresolvedVariable,TypeScriptUnresolvedFunction,TypeScriptValidateTypes
       return this.http
-        .put(this.pizzasUrl, JSON.stringify({"pizza": pizza}), {headers: this.headers})
+        .post(this.pizzasUrl, JSON.stringify({"pizza": pizza}), {headers: this.headers})
         .map(this.extractPizzaData)
         .catch(this.handleError);
     }
