@@ -5,23 +5,22 @@
     <!--<button (click)="gotoDetail()">View Details</button>-->
 <!--</div>-->
 
-<h2>Pizzas</h2>
+<h2>Pizza Shop</h2>
+<hr>
+<h4>check out our menu:</h4>
 <ol class="pizzas">
-    <li *ngFor="let pizza of pizzas "
-        [class.selected]="pizza === selectedPizza">
+    <li *ngFor="let pizza of pizzas ">
         <!--(click)="onSelect(pizza)">-->
 
-        name: <label>{{pizza.name}}</label>
+        <label>name: {{pizza.name}}</label>
         <input [(ngModel)]="pizza.price" placeholder="price">
         <button class="update" (click)="update(pizza)">Update</button>
     </li>
   <hr>
 </ol>
 
-<label>Price</label>
-<br>
-<div>
-<input [(ngModel)]="price" id ="price"> {{price}}
-<br>
-<button class ="btn" (click)="updateAll()">Update All</button>
+<div id="update-all">
+  <label>PRICE</label>
+  <input [(ngModel)]="price" id ="price"> {{price}}
+  <button class ="btn" (click)="updateAll()">Update All</button>
 </div>
